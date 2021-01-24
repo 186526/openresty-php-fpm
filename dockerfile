@@ -45,4 +45,4 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -y \
 COPY conf/php-fpm.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY conf/test.php /usr/local/openresty/nginx/html/test.php
 
-ENTRYPOINT /usr/sbin/php-fpm7.3 --nodaemonize --fpm-config /etc/php/7.3/fpm/php-fpm.conf & /usr/bin/openresty -g "daemon off;"
+CMD mkdir /run/php/ && mkdir /var/run/openresty/ && /usr/sbin/php-fpm7.3 --nodaemonize --fpm-config /etc/php/7.3/fpm/php-fpm.conf & /usr/bin/openresty -g "daemon off;"
